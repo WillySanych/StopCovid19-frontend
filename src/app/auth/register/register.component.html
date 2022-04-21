@@ -1,22 +1,96 @@
-<div class="container justify-content-center">
-  <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
-    <div class="form-group">
-      <label for="inputUsername" class="sr-only">Username</label>
-      <input type="text" id="inputUsername" [formControlName]="'username'" class="form-control" placeholder="Username" required="" autofocus="">
-    </div>
-    <div class="form-group">
-      <label for="inputEmail" class="sr-only">Email</label>
-      <input type="text" id="inputEmail" [formControlName]="'email'"class="form-control" placeholder="Email" required="" autofocus="">
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" [formControlName]="'password'" class="form-control" placeholder="Password" required="">
-    </div>
-    <div class="form-group">
-      <label for="inputConfirmPassword" class="sr-only">Password</label>
-      <input type="password" id="inputConfirmPassword" [formControlName]="'confirmPassword'" class="form-control" placeholder="Confirm Password" required="">
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-  </form>
+<div class="nav nav-pills nav-justified mt-5 w-auto">
+  <mdb-tabs [pills]="true" class="mx-auto w-25">
+    <!--Login-->
+
+    <mdb-tab title="Login">
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+
+        <!-- Login input -->
+        <div class="form-outline mb-4">
+          <input type="email" id="inputUsernameLogin" [formControlName]="'usernameLogin'" class="form-control" required=""/>
+          <label class="form-label" for="inputUsernameLogin">Username</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <input type="password" id="inputPasswordLogin" [formControlName]="'passwordLogin'" class="form-control"
+                 required=""/>
+          <label class="form-label" for="inputPasswordLogin">Password</label>
+        </div>
+
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+
+      </form>
+    </mdb-tab>
+
+    <!--Register-->
+    <mdb-tab title="Register">
+
+      <ng-template mdbTabContent>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegistration()">
+
+          <!-- Login input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="inputUsernameRegistration" [formControlName]="'usernameRegister'" class="form-control" required=""/>
+            <label class="form-label" for="inputUsernameRegistration">Username</label>
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="inputEmailRegistration" [formControlName]="'emailRegister'" class="form-control" required=""/>
+            <label class="form-label" for="inputEmailRegistration">Email</label>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" id="inputPasswordRegistration" [formControlName]="'passwordRegister'" class="form-control"
+                   required=""/>
+            <label class="form-label" for="inputPasswordRegistration">Password</label>
+          </div>
+
+          <!-- Confirm password input -->
+          <div class="form-outline mb-4">
+            <input type="password" id="inputConfirmPasswordRegistration" [formControlName]="'confirmPasswordRegister'"
+                   class="form-control"
+                   required=""/>
+            <label class="form-label" for="inputConfirmPasswordRegistration">Password</label>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+
+        </form>
+
+      </ng-template>
+
+    </mdb-tab>
+  </mdb-tabs>
 </div>
+
+
+<!--<div class="container justify-content-center">-->
+<!--  <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">-->
+<!--    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>-->
+<!--    <div class="form-group">-->
+<!--      <label for="inputUsername" class="sr-only">Username</label>-->
+<!--      <input type="text" id="inputUsername" [formControlName]="'username'" class="form-control" placeholder="Username" required="" autofocus="">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="inputEmail" class="sr-only">Email</label>-->
+<!--      <input type="text" id="inputEmail" [formControlName]="'email'" class="form-control" placeholder="Email" required="" autofocus="">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="inputPassword" class="sr-only">Password</label>-->
+<!--      <input type="password" id="inputPassword" [formControlName]="'password'" class="form-control" placeholder="Password" required="">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="inputConfirmPassword" class="sr-only">Password</label>-->
+<!--      <input type="password" id="inputConfirmPassword" [formControlName]="'confirmPassword'" class="form-control" placeholder="Confirm Password" required="">-->
+<!--    </div>-->
+<!--    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>-->
+<!--  </form>-->
+<!--</div>-->
