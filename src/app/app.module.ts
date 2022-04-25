@@ -21,20 +21,20 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { LoginComponent } from './auth/login/login.component';
 import { RegisterSucessComponent } from './auth/register-sucess/register-sucess.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     RegisterComponent,
-    LoginComponent,
-    RegisterSucessComponent
+    RegisterSucessComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +60,8 @@ import {NgxWebstorageModule} from "ngx-webstorage";
     NgxWebstorageModule.forRoot(),
     RouterModule.forRoot([
       {path: "register", component: RegisterComponent},
-      {path: "login", component: LoginComponent},
-      {path: "register-success", component: RegisterSucessComponent}
+      {path: "register-success", component: RegisterSucessComponent},
+      {path: "quiz", component: QuizComponent}
     ]),
     HttpClientModule
   ],

@@ -7,16 +7,38 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
 
         <!-- Login input -->
-        <div class="form-outline mb-4">
-          <input type="email" id="inputUsernameLogin" [formControlName]="'usernameLogin'" class="form-control" required=""/>
-          <label class="form-label" for="inputUsernameLogin">Username</label>
+        <div class="form-outline mb-5">
+          <mdb-form-control>
+            <input mdbValidate mdbInput type="email" id="inputUsernameLogin" [formControlName]="'usernameLogin'"
+                   class="form-control" required/>
+            <label mdbLabel class="form-label" for="inputUsernameLogin">Username</label>
+            <mdb-error
+              *ngIf="usernameLogin?.invalid && (usernameLogin?.dirty || usernameLogin.touched)">
+              Username is required
+            </mdb-error>
+            <mdb-success
+              *ngIf="usernameLogin?.valid && (usernameLogin?.dirty || usernameLogin?.touched)">
+              Fine
+            </mdb-success>
+          </mdb-form-control>
         </div>
 
         <!-- Password input -->
-        <div class="form-outline mb-4">
-          <input type="password" id="inputPasswordLogin" [formControlName]="'passwordLogin'" class="form-control"
-                 required=""/>
-          <label class="form-label" for="inputPasswordLogin">Password</label>
+        <div class="form-outline mb-5">
+          <mdb-form-control>
+            <input mdbValidate mdbInput type="password" id="inputPasswordLogin" [formControlName]="'passwordLogin'"
+                   class="form-control"
+                   required/>
+            <label mdbLabel class="form-label" for="inputPasswordLogin">Password</label>
+            <mdb-error
+              *ngIf="passwordLogin?.invalid && (passwordLogin?.dirty || passwordLogin.touched)">
+              Password is required
+            </mdb-error>
+            <mdb-success
+              *ngIf="passwordLogin?.valid && (passwordLogin?.dirty || passwordLogin?.touched)">
+              Fine
+            </mdb-success>
+          </mdb-form-control>
         </div>
 
 
@@ -34,30 +56,71 @@
         <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegistration()">
 
           <!-- Login input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="inputUsernameRegistration" [formControlName]="'usernameRegister'" class="form-control" required=""/>
-            <label class="form-label" for="inputUsernameRegistration">Username</label>
+          <div class="form-outline mb-5">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="text" id="inputUsernameRegistration"
+                     [formControlName]="'usernameRegister'" class="form-control" required/>
+              <label mdbLabel class="form-label" for="inputUsernameRegistration">Username</label>
+              <mdb-error
+                *ngIf="usernameRegister?.invalid && (usernameRegister?.dirty || usernameRegister.touched)">
+                Username is required
+              </mdb-error>
+              <mdb-success
+                *ngIf="usernameRegister?.valid && (usernameRegister?.dirty || usernameRegister?.touched)">
+                Fine
+              </mdb-success>
+            </mdb-form-control>
           </div>
 
           <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="inputEmailRegistration" [formControlName]="'emailRegister'" class="form-control" required=""/>
-            <label class="form-label" for="inputEmailRegistration">Email</label>
+          <div class="form-outline mb-5">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="email" id="inputEmailRegistration" [formControlName]="'emailRegister'"
+                     class="form-control" required/>
+              <label mdbLabel class="form-label" for="inputEmailRegistration">Email</label>
+              <mdb-error
+                *ngIf="emailRegister?.invalid && (emailRegister?.dirty || emailRegister.touched)">
+                Email is required
+              </mdb-error>
+              <mdb-success
+                *ngIf="emailRegister?.valid && (emailRegister?.dirty || emailRegister?.touched)">
+                Fine
+              </mdb-success>
+            </mdb-form-control>
           </div>
 
           <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" id="inputPasswordRegistration" [formControlName]="'passwordRegister'" class="form-control"
-                   required=""/>
-            <label class="form-label" for="inputPasswordRegistration">Password</label>
+          <div class="form-outline mb-5">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="password" id="inputPasswordRegistration"
+                     [formControlName]="'passwordRegister'" class="form-control" required/>
+              <label mdbLabel class="form-label" for="inputPasswordRegistration">Password</label>
+              <mdb-error
+                *ngIf="passwordRegister?.invalid && (passwordRegister?.dirty || passwordRegister.touched)">
+                Password is required
+              </mdb-error>
+              <mdb-success
+                *ngIf="passwordRegister?.valid && (passwordRegister?.dirty || passwordRegister?.touched)">
+                Fine
+              </mdb-success>
+            </mdb-form-control>
           </div>
 
           <!-- Confirm password input -->
-          <div class="form-outline mb-4">
-            <input type="password" id="inputConfirmPasswordRegistration" [formControlName]="'confirmPasswordRegister'"
-                   class="form-control"
-                   required=""/>
-            <label class="form-label" for="inputConfirmPasswordRegistration">Password</label>
+          <div class="form-outline mb-5">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="password" id="inputConfirmPasswordRegistration"
+                     [formControlName]="'confirmPasswordRegister'" class="form-control" required/>
+              <label mdbLabel class="form-label" for="inputConfirmPasswordRegistration">Password</label>
+              <mdb-error
+                *ngIf="confirmPasswordRegister?.invalid && (confirmPasswordRegister?.dirty || confirmPasswordRegister.touched)">
+                Password doesn't match
+              </mdb-error>
+              <mdb-success
+                *ngIf="confirmPasswordRegister?.valid && (confirmPasswordRegister?.dirty || confirmPasswordRegister?.touched)">
+                Fine
+              </mdb-success>
+            </mdb-form-control>
           </div>
 
           <!-- Submit button -->
@@ -71,6 +134,11 @@
   </mdb-tabs>
 </div>
 
+
+<!--<div class="form-outline mb-4">-->
+<!--  <input type="text" id="inputUsernameRegistration" [formControlName]="'usernameRegister'" class="form-control"/>-->
+<!--  <label class="form-label" for="inputUsernameRegistration">Username</label>-->
+<!--</div>-->
 
 <!--<div class="container justify-content-center">-->
 <!--  <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">-->
