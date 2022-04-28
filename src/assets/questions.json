@@ -1,0 +1,522 @@
+{
+  "questions": [
+    {
+      "questionText": "Какой у вас пол?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Женский",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Мужской",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Ваш возраст:",
+      "options": [
+        {
+          "id": 1,
+          "text": "Младше 18",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "18-29",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "30-39",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "text": "40-59",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "text": "60 и старше",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Есть ли у вас хронические заболевания? Если да, то отметьте какие:",
+      "options": [
+        {
+          "id": 1,
+          "text": "Сердечно-сосудистые заболевания",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Сахарный диабет",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Хронические заболевания легких",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "text": "Иммунодефицит",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "text": "Онкологические заболевания",
+          "isSelected": false
+        },
+        {
+          "id": 6,
+          "text": "Почечная недостаточность",
+          "isSelected": false
+        },
+        {
+          "id": 7,
+          "text": "Цереброваскулярная болезнь",
+          "isSelected": false
+        },
+        {
+          "id": 8,
+          "text": "Повышенное давление",
+          "isSelected": false
+        },
+        {
+          "id": 9,
+          "text": "Другое хроническое заболевание",
+          "isSelected": false
+        },
+        {
+          "id": 10,
+          "text": "Хронические заболевания отсутствуют.",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Как начиналось и развивалось заболевание COVID-19 у Вас?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Начиналось постепенно и развивалось в течении 3-4 дней и более",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Начиналось быстро и развивалось в течении 1-2 дней",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Начиналось стремительно и развивалось в течении нескольких часов",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "При глубоком вдохе и задержке дыхания более чем на 10 секунд ощущали",
+      "options": [
+        {
+          "id": 1,
+          "text": "Тяжесть и боль в грудной клетке",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Ничего необычного, все в норме",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Начиналось стремительно и развивалось в течении нескольких часов",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Отметили ли Вы у себя наличие кашля?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Да",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Нет",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Каков характер кашля?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Кашель умеренный, практически отсутствует",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Кашель сухой, вместе с ним появилась отдышка",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Кашель сильный, сухой, изматывающий, но отдышки не наблюдается",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Как протекал кашель в дальнейшем?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Кашель сохранялся долго",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Кашель прошел достаточно быстро",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Отметили Вы у себя наличие высокой температуры?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Да",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Нет",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "До какого уровня и как быстро повышалась температура тела?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Температура поднималась постепенно и не выше 38",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Температура повысилась стремительно за несколько часов до 39 и выше",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Температура повысилась за несколько дней до 38-39",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Отметьте симптомы, которые появились раньше всего?",
+      "options": [
+        {
+          "id": 1,
+          "text": "Температура",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Кашель",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Упадок сил",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "text": "Потеря запаха и вкуса",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "text": "Снижение аппетита",
+          "isSelected": false
+        },
+        {
+          "id": 6,
+          "text": "Воспаление слизистой оболочки глаза",
+          "isSelected": false
+        },
+        {
+          "id": 7,
+          "text": "Одышка",
+          "isSelected": false
+        },
+        {
+          "id": 8,
+          "text": "Боль в суставах",
+          "isSelected": false
+        },
+        {
+          "id": 9,
+          "text": "Головная боль",
+          "isSelected": false
+        },
+        {
+          "id": 10,
+          "text": "Боль в мышцах",
+          "isSelected": false
+        },
+        {
+          "id": 11,
+          "text": "Боль при движении глазных яблок",
+          "isSelected": false
+        },
+        {
+          "id": 12,
+          "text": "Тошнота, рвота",
+          "isSelected": false
+        },
+        {
+          "id": 13,
+          "text": "Боль в горле",
+          "isSelected": false
+        },
+        {
+          "id": 14,
+          "text": "Понос",
+          "isSelected": false
+        },
+        {
+          "id": 15,
+          "text": "Насморк",
+          "isSelected": false
+        },
+        {
+          "id": 16,
+          "text": "Озноб",
+          "isSelected": false
+        },
+        {
+          "id": 17,
+          "text": "Потливость",
+          "isSelected": false
+        },
+        {
+          "id": 18,
+          "text": "Головокружение",
+          "isSelected": false
+        },
+        {
+          "id": 19,
+          "text": "Ничего из вышеперечисленного",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Выберите симптомы, которые наблюдались у Вас за весь период болезни:",
+      "options": [
+        {
+          "id": 1,
+          "text": "Температура",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Кашель",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Упадок сил",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "text": "Потеря запаха и вкуса",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "text": "Снижение аппетита",
+          "isSelected": false
+        },
+        {
+          "id": 6,
+          "text": "Воспаление слизистой оболочки глаза",
+          "isSelected": false
+        },
+        {
+          "id": 7,
+          "text": "Одышка",
+          "isSelected": false
+        },
+        {
+          "id": 8,
+          "text": "Боль в суставах",
+          "isSelected": false
+        },
+        {
+          "id": 9,
+          "text": "Головная боль",
+          "isSelected": false
+        },
+        {
+          "id": 10,
+          "text": "Боль в мышцах",
+          "isSelected": false
+        },
+        {
+          "id": 11,
+          "text": "Боль при движении глазных яблок",
+          "isSelected": false
+        },
+        {
+          "id": 12,
+          "text": "Тошнота, рвота",
+          "isSelected": false
+        },
+        {
+          "id": 13,
+          "text": "Боль в горле",
+          "isSelected": false
+        },
+        {
+          "id": 14,
+          "text": "Понос",
+          "isSelected": false
+        },
+        {
+          "id": 15,
+          "text": "Насморк",
+          "isSelected": false
+        },
+        {
+          "id": 16,
+          "text": "Озноб",
+          "isSelected": false
+        },
+        {
+          "id": 17,
+          "text": "Потливость",
+          "isSelected": false
+        },
+        {
+          "id": 18,
+          "text": "Головокружение",
+          "isSelected": false
+        },
+        {
+          "id": 19,
+          "text": "Ничего из вышеперечисленного",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Если Вы болели несколько раз, симптомы проявлялись:",
+      "options": [
+        {
+          "id": 1,
+          "text": "Такие же, как и в предыдущий раз",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Различные",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "text": "Болел(а) только один раз",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Проявились ли у Вас какие-либо симптомы после коронавируса, если да, то какие (выберите один или несколько вариантов ответа):",
+      "options": [
+        {
+          "id": 1,
+          "text": "Приступы слабости",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "text": "Боли в мышцах",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "text": "Депрессивное настроение",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "text": "Панические атаки",
+          "isSelected": false
+        },
+        {
+          "id": 6,
+          "text": "Скованность в груди",
+          "isSelected": false
+        },
+        {
+          "id": 7,
+          "text": "Интенсивные головные боли",
+          "isSelected": false
+        },
+        {
+          "id": 8,
+          "text": "Нарушение зрения",
+          "isSelected": false
+        },
+        {
+          "id": 9,
+          "text": "Нарушение обоняния, вкуса",
+          "isSelected": false
+        },
+        {
+          "id": 10,
+          "text": "Нарушение сердечного ритма",
+          "isSelected": false
+        },
+        {
+          "id": 11,
+          "text": "Ухудшение аппетита",
+          "isSelected": false
+        },
+        {
+          "id": 12,
+          "text": "Снижение иммунитета",
+          "isSelected": false
+        },
+        {
+          "id": 13,
+          "text": "Аллергические реакции",
+          "isSelected": false
+        },
+        {
+          "id": 14,
+          "text": "Ничего из вышеперечисленного",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "questionText": "Укажите симптомы, которые проявились у Вас (если они не были указаны):"
+    }
+  ]
+}
