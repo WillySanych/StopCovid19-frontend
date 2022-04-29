@@ -5,9 +5,8 @@
     <!-- Navbar brand -->
     <a class="navbar-brand me-5" href="/">
       <img
-        src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp"
-        height="16"
-        alt=""
+        src="assets/covid.png"
+        height="55"
         loading="lazy"
         style="margin-top: -1px;"
       />
@@ -35,6 +34,9 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li *ngIf="authService.isAuthenticated()" class="nav-item">
           <a class="navbar-brand" href="/quiz">Опрос</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated()" class="nav-item">
+          <a class="navbar-brand" href="/results">Результаты</a>
         </li>
       </ul>
       <!-- Left links -->

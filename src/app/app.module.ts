@@ -24,9 +24,12 @@ import { RegisterComponent } from './auth/register/register.component';
 import { RegisterSucessComponent } from './auth/register-sucess/register-sucess.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import { QuizComponent } from './quiz/quiz.component';
+import {HttpClientInterceptor} from "./http-client-interceptor";
+import { ResultsComponent } from './results/results.component';
+import { QuizResultComponent } from './quiz-result/quiz-result.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { QuizComponent } from './quiz/quiz.component';
     HeaderComponent,
     RegisterComponent,
     RegisterSucessComponent,
-    QuizComponent
+    QuizComponent,
+    ResultsComponent,
+    QuizResultComponent
   ],
   imports: [
     BrowserModule,
@@ -61,11 +66,13 @@ import { QuizComponent } from './quiz/quiz.component';
     RouterModule.forRoot([
       {path: "register", component: RegisterComponent},
       {path: "register-success", component: RegisterSucessComponent},
-      {path: "quiz", component: QuizComponent}
+      {path: "quiz", component: QuizComponent},
+      {path: "results", component: ResultsComponent},
+      {path: "result/:id", component: QuizResultComponent}
     ]),
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

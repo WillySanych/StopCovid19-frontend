@@ -1,6 +1,7 @@
 export class QuizPayload {
   id: string;
   username: string;
+  createdOn: string;
   firstQuestion: string;
   secondQuestion: string;
   thirdQuestion: string;
@@ -8,7 +9,7 @@ export class QuizPayload {
   fifthQuestion: string;
   sixthQuestion: string;
   seventhQuestion: string;
-  eightQuestion: string;
+  eighthQuestion: string;
   ninthQuestion: string;
   tenthQuestion: string;
   eleventhQuestion: string;

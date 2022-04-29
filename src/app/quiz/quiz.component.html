@@ -26,7 +26,7 @@
               вопрос
             </button>
             <button *ngIf="!(currentQuestion===questionList.length - 1)"
-                    [disabled]="currentQuestion===questionList.length - 1 || this.answerStringList[this.currentQuestion] == null || this.answerStringList[this.currentQuestion] === ''"
+                    [disabled]="currentQuestion===questionList.length - 1 || this.answerList[this.currentQuestion] == null || this.answerList[this.currentQuestion] === ''"
                     class="btn btn-primary"
                     (click)="nextQuestion()">
               Следующий вопрос
@@ -37,7 +37,7 @@
           <p class="card-text" *ngFor="let option of questionList[currentQuestion]?.options">
             <input
               mdbRadio
-              [(ngModel)]="radioAnswerList[currentQuestion]"
+              [(ngModel)]="answerList[currentQuestion]"
               class="form-check-input"
               type="radio"
               name="{{questionList[currentQuestion]?.questionText}}"
@@ -52,7 +52,7 @@
               Предыдущий
               вопрос
             </button>
-            <button [disabled]="currentQuestion===questionList.length - 1 || radioAnswerList[currentQuestion] == null"
+            <button [disabled]="currentQuestion===questionList.length - 1 || answerList[currentQuestion] == null"
                     class="btn btn-primary"
                     (click)="nextQuestion()">
               Следующий вопрос
@@ -61,7 +61,7 @@
         </div>
         <div class="mt-3" *ngIf="numbersOfInputFieldQuestions.includes(currentQuestion + 1)">
           <mdb-form-control>
-            <textarea [(ngModel)]="fifteenthQuestionAnswer" mdbInput class="form-control" id="textAreaExample" rows="4"></textarea>
+            <textarea [(ngModel)]="answerList[currentQuestion]" mdbInput class="form-control" id="textAreaExample" rows="4"></textarea>
             <!--          <label mdbLabel class="form-label" for="textAreaExample">Message</label>-->
           </mdb-form-control>
           <div class="d-flex justify-content-between mt-3">
@@ -70,7 +70,7 @@
               Предыдущий
               вопрос
             </button>
-            <button [disabled]="currentQuestion===questionList.length - 1 || radioAnswerList[currentQuestion] == null"
+            <button [disabled]="currentQuestion===questionList.length - 1 || answerList[currentQuestion] == null"
                     class="btn btn-primary"
                     (click)="nextQuestion()">
               Следующий вопрос
@@ -80,7 +80,7 @@
       </div>
 
       <div *ngIf="currentQuestion===questionList.length - 1" class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" (click)="addQuiz()">
           Закончить
         </button>
       </div>
