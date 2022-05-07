@@ -7,7 +7,6 @@
       <img
         src="assets/covid.png"
         height="55"
-        loading="lazy"
         style="margin-top: -1px;"
       />
     </a>
@@ -32,11 +31,14 @@
     >
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li *ngIf="authService.isAuthenticated()" class="nav-item">
+        <li *ngIf="rolesService.hasPatientRole()" class="nav-item">
           <a class="navbar-brand" href="/quiz">Опрос</a>
         </li>
-        <li *ngIf="authService.isAuthenticated()" class="nav-item">
+        <li *ngIf="rolesService.hasDoctorRole()" class="nav-item">
           <a class="navbar-brand" href="/results">Результаты</a>
+        </li>
+        <li *ngIf="rolesService.hasAdminRole()" class="nav-item">
+          <a class="navbar-brand" href="/admin-panel">Управление пользователями</a>
         </li>
       </ul>
       <!-- Left links -->
@@ -46,10 +48,15 @@
 <!--                class="btn btn-outline-primary btn-rounded px-3 me-2">-->
 <!--          Login-->
 <!--        </button>-->
-        <button mdbRipple rippleColor="light" type="button"
+        <button *ngIf="!authService.isAuthenticated()" mdbRipple rippleColor="light" type="button"
            class="btn btn-primary btn-rounded me-3 ripple-surface-unbound"
            routerLink="/register">
           Login
+        </button>
+        <button *ngIf="authService.isAuthenticated()" mdbRipple rippleColor="light" type="button"
+                class="btn btn-primary btn-rounded me-3 ripple-surface-unbound"
+                (click)="authService.logout()">
+          Logout
         </button>
 <!--                <a-->
 <!--                  class="btn btn-dark px-3"-->

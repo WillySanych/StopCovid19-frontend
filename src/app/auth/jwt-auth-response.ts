@@ -1,4 +1,9 @@
+import {User} from "./user";
+
 export class JwtAuthResponse {
   authenticationToken: string;
-  username: string
+  refreshToken: string;
+  expiresAt: Date;
+  username: string;
+  roles: Set<string>;
 }

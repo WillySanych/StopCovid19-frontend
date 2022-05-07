@@ -14,14 +14,14 @@ export class QuizService {
   }
 
   addQuiz(quizPayload: QuizPayload) {
-    return this.httpClient.post(this.url + "api/quizzes/", quizPayload)
+    return this.httpClient.post(this.url + "api/quizzes/", quizPayload);
   }
 
   getAllQuizzes(): Observable<Array<QuizPayload>> {
-    return this.httpClient.get<Array<QuizPayload>>(this.url + "api/quizzes/all")
+    return this.httpClient.get<Array<QuizPayload>>(this.url + "api/quizzes/all");
   }
 
   getQuiz (permaLink: Number):Observable<QuizPayload> {
-     return this.httpClient.get<QuizPayload>(this.url + "api/quizzes/get/" + permaLink)
+     return this.httpClient.get<QuizPayload>(this.url + "api/quizzes/get/" + permaLink);
   }
 }

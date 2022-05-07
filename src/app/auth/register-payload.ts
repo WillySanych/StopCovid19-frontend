@@ -1,6 +1,6 @@
 export class RegisterPayload {
   username: String;
-  email: String;
+  // email: String;
   password: String;
   confirmPassword: String;
 }

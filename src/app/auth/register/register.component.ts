@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, AbstractControl, FormControl, Validators} from "@angular/forms";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegisterPayload} from "../register-payload";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {LoginPayload} from "../login-payload";
+import {ToastrService} from "ngx-toastr";
+import {MdbTabsComponent} from "mdb-angular-ui-kit/tabs";
 
 @Component({
   selector: 'app-register',
@@ -16,17 +18,18 @@ export class RegisterComponent implements OnInit {
   registerPayload: RegisterPayload;
   loginForm: FormGroup;
   loginPayload: LoginPayload;
+  @ViewChild("tabsLoginRegister") tabsLoginRegister: MdbTabsComponent
 
-  constructor(private formBuilder: FormBuilder, private authServive: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authServive: AuthService, private router: Router, private toastr: ToastrService) {
     this.registerForm = this.formBuilder.group({
       usernameRegister: '',
-      emailRegister: '',
+      // emailRegister: '',
       passwordRegister: '',
       confirmPasswordRegister: ''
     });
     this.registerPayload = {
       username: '',
-      email: '',
+      // email: '',
       password: '',
       confirmPassword: ''
     };
@@ -46,9 +49,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('usernameRegister')!;
   }
 
-  get emailRegister(): AbstractControl {
-    return this.registerForm.get('emailRegister')!;
-  }
+  // get emailRegister(): AbstractControl {
+  //   return this.registerForm.get('emailRegister')!;
+  // }
 
   get passwordRegister(): AbstractControl {
     return this.registerForm.get('passwordRegister')!;
@@ -75,12 +78,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       usernameRegister: new FormControl(null, {validators: Validators.required, updateOn: "submit"}),
-      emailRegister: new FormControl(null, {validators: [Validators.required, Validators.email], updateOn: "submit"}),
+      // emailRegister: new FormControl(null, {validators: [Validators.required, Validators.email], updateOn: "submit"}),
       passwordRegister: new FormControl(null, {validators: Validators.required, updateOn: "submit"}),
-      confirmPasswordRegister: new FormControl(null, {validators: [Validators.required, this.matchingPasswords.bind(this)], updateOn: "submit"})
+      confirmPasswordRegister: new FormControl(null, {
+        validators: [Validators.required, this.matchingPasswords.bind(this)],
+        updateOn: "submit"
+      })
     });
 
-    this.loginForm = new FormGroup( {
+    this.loginForm = new FormGroup({
       usernameLogin: new FormControl(null, {validators: Validators.required, updateOn: "submit"}),
       passwordLogin: new FormControl(null, {validators: Validators.required, updateOn: "submit"})
     })
@@ -90,15 +96,18 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.registerForm.markAllAsTouched();
       this.registerPayload.username = this.registerForm.get('usernameRegister')?.value;
-      this.registerPayload.email = this.registerForm.get('emailRegister')?.value;
+      // this.registerPayload.email = this.registerForm.get('emailRegister')?.value;
       this.registerPayload.password = this.registerForm.get('passwordRegister')?.value;
       this.registerPayload.confirmPassword = this.registerForm.get('confirmPasswordRegister')?.value;
 
       this.authServive.register(this.registerPayload).subscribe(data => {
         console.log("register success");
-        this.router.navigateByUrl("/register-success");
+        // this.router.navigateByUrl("/register");
+        this.tabsLoginRegister.setActiveTab(0);
+        this.toastr.success("Регистрация прошла успешно");
       }, error => {
         console.log("register failed");
+        this.toastr.error("Пользователь с таким именем уже существует", "Ошибка регистрации")
       });
     }
   }
@@ -108,12 +117,12 @@ export class RegisterComponent implements OnInit {
     this.loginPayload.password = this.loginForm.get('passwordLogin')?.value;
 
     this.authServive.login(this.loginPayload).subscribe(data => {
-      if (data) {
-        console.log("login success");
-        this.router.navigateByUrl("/");
-      } else {
-        console.log("login failed")
-      }
+      console.log("login success");
+      this.router.navigateByUrl("/");
+      this.toastr.success("Авторизация прошла успешно");
+    }, error => {
+      console.log("login failed");
+      this.toastr.error("Проверьте имя пользователя и/или пароль", "Ошибка авторизации");
     });
   }
 }

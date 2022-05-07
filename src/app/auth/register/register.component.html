@@ -1,5 +1,5 @@
 <div class="nav nav-pills nav-justified mt-5 w-auto">
-  <mdb-tabs [pills]="true" class="mx-auto w-25">
+  <mdb-tabs [pills]="true" class="mx-auto w-25" #tabsLoginRegister>
     <!--Login-->
 
     <mdb-tab title="Login">
@@ -9,7 +9,7 @@
         <!-- Login input -->
         <div class="form-outline mb-5">
           <mdb-form-control>
-            <input mdbValidate mdbInput type="email" id="inputUsernameLogin" [formControlName]="'usernameLogin'"
+            <input mdbValidate mdbInput type="text" id="inputUsernameLogin" [formControlName]="'usernameLogin'"
                    class="form-control" required/>
             <label mdbLabel class="form-label" for="inputUsernameLogin">Username</label>
             <mdb-error
@@ -72,22 +72,22 @@
             </mdb-form-control>
           </div>
 
-          <!-- Email input -->
-          <div class="form-outline mb-5">
-            <mdb-form-control>
-              <input mdbValidate mdbInput type="email" id="inputEmailRegistration" [formControlName]="'emailRegister'"
-                     class="form-control" required/>
-              <label mdbLabel class="form-label" for="inputEmailRegistration">Email</label>
-              <mdb-error
-                *ngIf="emailRegister?.invalid && (emailRegister?.dirty || emailRegister.touched)">
-                Email is required
-              </mdb-error>
-              <mdb-success
-                *ngIf="emailRegister?.valid && (emailRegister?.dirty || emailRegister?.touched)">
-                Fine
-              </mdb-success>
-            </mdb-form-control>
-          </div>
+<!--           Email input -->
+<!--          <div class="form-outline mb-5">-->
+<!--            <mdb-form-control>-->
+<!--              <input mdbValidate mdbInput type="email" id="inputEmailRegistration" [formControlName]="'emailRegister'"-->
+<!--                     class="form-control" required/>-->
+<!--              <label mdbLabel class="form-label" for="inputEmailRegistration">Email</label>-->
+<!--              <mdb-error-->
+<!--                *ngIf="emailRegister?.invalid && (emailRegister?.dirty || emailRegister.touched)">-->
+<!--                Email is required-->
+<!--              </mdb-error>-->
+<!--              <mdb-success-->
+<!--                *ngIf="emailRegister?.valid && (emailRegister?.dirty || emailRegister?.touched)">-->
+<!--                Fine-->
+<!--              </mdb-success>-->
+<!--            </mdb-form-control>-->
+<!--          </div>-->
 
           <!-- Password input -->
           <div class="form-outline mb-5">

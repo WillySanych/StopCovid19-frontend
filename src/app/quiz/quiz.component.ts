@@ -12,7 +12,6 @@ import {Router} from "@angular/router";
 export class QuizComponent implements OnInit {
 
   quizPayload: QuizPayload
-
   questionList: any = []
   currentQuestion: number = 0
   answerList: string[] = []
@@ -44,65 +43,65 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllQuestions()
+    this.getAllQuestions();
   }
 
   getAllQuestions() {
     this.questionService.getQuestionJson()
       .subscribe(res => {
-        this.questionList = res.questions
+        this.questionList = res.questions;
       })
   }
 
   collectingData() {
     // console.log(this.questionList[this.currentQuestion]?.options)
     this.answerList[this.currentQuestion] = this.questionList[this.currentQuestion]?.options.filter(
-      (x: { isSelected: boolean; }) => x.isSelected).map((x: { text: any; }) => x.text).join(", ").toString()
+      (x: { isSelected: boolean; }) => x.isSelected).map((x: { text: any; }) => x.text).join(", ").toString();
     // console.log(this.answerList[this.currentQuestion])
     // console.log(this.answerList)
   }
 
   nextQuestion() {
     if (this.currentQuestion === 5 && this.answerList[5] === "Нет") {
-      this.currentQuestion += 3
+      this.currentQuestion += 3;
     } else if (this.currentQuestion === 8 && this.answerList[8] === "Нет") {
-      this.currentQuestion += 2
+      this.currentQuestion += 2;
     } else {
-      this.currentQuestion++
+      this.currentQuestion++;
     }
   }
 
   previousQuestion() {
     if (this.currentQuestion === 8 && this.answerList[5] === "Нет") {
-      this.currentQuestion -= 3
+      this.currentQuestion -= 3;
     } else if (this.currentQuestion === 10 && this.answerList[8] === "Нет") {
-      this.currentQuestion -= 2
+      this.currentQuestion -= 2;
     } else {
-      this.currentQuestion--
+      this.currentQuestion--;
     }
   }
 
   addQuiz() {
-    this.quizPayload.firstQuestion = this.answerList[0]
-    this.quizPayload.secondQuestion = this.answerList[1]
-    this.quizPayload.thirdQuestion = this.answerList[2]
-    this.quizPayload.fourthQuestion = this.answerList[3]
-    this.quizPayload.fifthQuestion = this.answerList[4]
-    this.quizPayload.sixthQuestion = this.answerList[5]
-    this.quizPayload.seventhQuestion = this.answerList[6]
-    this.quizPayload.eighthQuestion = this.answerList[7]
-    this.quizPayload.ninthQuestion = this.answerList[8]
-    this.quizPayload.tenthQuestion = this.answerList[9]
-    this.quizPayload.eleventhQuestion = this.answerList[10]
-    this.quizPayload.twelfthQuestion = this.answerList[11]
-    this.quizPayload.thirteenthQuestion = this.answerList[12]
-    this.quizPayload.fourteenthQuestion = this.answerList[13]
-    this.quizPayload.fifteenthQuestion = this.answerList[14]
+    this.quizPayload.firstQuestion = this.answerList[0];
+    this.quizPayload.secondQuestion = this.answerList[1];
+    this.quizPayload.thirdQuestion = this.answerList[2];
+    this.quizPayload.fourthQuestion = this.answerList[3];
+    this.quizPayload.fifthQuestion = this.answerList[4];
+    this.quizPayload.sixthQuestion = this.answerList[5];
+    this.quizPayload.seventhQuestion = this.answerList[6];
+    this.quizPayload.eighthQuestion = this.answerList[7];
+    this.quizPayload.ninthQuestion = this.answerList[8];
+    this.quizPayload.tenthQuestion = this.answerList[9];
+    this.quizPayload.eleventhQuestion = this.answerList[10];
+    this.quizPayload.twelfthQuestion = this.answerList[11];
+    this.quizPayload.thirteenthQuestion = this.answerList[12];
+    this.quizPayload.fourteenthQuestion = this.answerList[13];
+    this.quizPayload.fifteenthQuestion = this.answerList[14];
 
     this.addQuizService.addQuiz(this.quizPayload).subscribe(data => {
-      this.router.navigateByUrl("/")
+      this.router.navigateByUrl("/");
     }, error => {
-      console.log("Failure response")
+      console.log("Failure response");
     })
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizService} from "../quiz.service";
 import {Observable} from "rxjs";
 import {QuizPayload} from "../quiz/quiz-payload";
