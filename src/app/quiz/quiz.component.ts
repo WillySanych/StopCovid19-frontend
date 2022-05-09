@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionService} from "../service/question.service";
-import {QuizPayload} from "./quiz-payload";
+import {QuizPayload} from "../payloads/quiz-payload";
 import {QuizService} from "../quiz.service";
 import {Router} from "@angular/router";
 
@@ -23,7 +23,7 @@ export class QuizComponent implements OnInit {
     this.quizPayload = {
       id: "",
       username: "",
-      createdOn: "",
+      createdOn: 0,
       firstQuestion: "",
       secondQuestion: "",
       thirdQuestion: "",

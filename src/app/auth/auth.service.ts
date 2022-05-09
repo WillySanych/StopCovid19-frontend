@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {RegisterPayload} from "./register-payload";
+import {RegisterPayload} from "../payloads/register-payload";
 import {map, Observable, tap, throwError} from "rxjs";
-import {LoginPayload} from "./login-payload";
+import {LoginPayload} from "../payloads/login-payload";
 import {JwtAuthResponse} from "./jwt-auth-response";
 import {LocalStorageService} from "ngx-webstorage";
 

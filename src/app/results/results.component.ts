@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {QuizService} from "../quiz.service";
-import {Observable} from "rxjs";
-import {QuizPayload} from "../quiz/quiz-payload";
+import {QuizPayload} from "../payloads/quiz-payload";
+import {PageEvent} from "@angular/material/paginator";
+import {PagingPayload} from "../payloads/paging-payload";
 
 @Component({
   selector: 'app-results',
@@ -10,12 +11,37 @@ import {QuizPayload} from "../quiz/quiz-payload";
 })
 export class ResultsComponent implements OnInit {
 
-  quizzes: Observable<Array<QuizPayload>>
+  requestAllQuizzesPayload: PagingPayload;
+  quizzes: Array<QuizPayload>;
+  totalElements: number = 0;
+  pageSizeOptions = [5, 10, 25, 50, 100];
 
-  constructor (private quizService: QuizService ) { }
+  constructor (private quizService: QuizService ) {
+  }
 
   ngOnInit(): void {
-    this.quizzes = this.quizService.getAllQuizzes()
+    this.requestAllQuizzesPayload = {
+      page: 0,
+      size: 5
+    }
+    // this.quizzes = this.quizService.getAllQuizzes()
+    this.getAllQuizzes(this.requestAllQuizzesPayload)
+  }
+
+  nextPage(event: PageEvent) {
+    this.requestAllQuizzesPayload.page = event.pageIndex;
+    this.requestAllQuizzesPayload.size = event.pageSize;
+    this.getAllQuizzes(this.requestAllQuizzesPayload);
+  }
+
+  getAllQuizzes(requestAllQuizzesPayload: PagingPayload) {
+    this.quizService.getAllQuizzes(requestAllQuizzesPayload).subscribe( res => {
+      this.quizzes = res.content;
+      this.totalElements = res.totalElements;
+    }, error => {
+      console.log("Error while getting results");
+    })
+
   }
 
 }

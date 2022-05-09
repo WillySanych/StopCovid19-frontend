@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {QuizPayload} from "./quiz/quiz-payload";
+import {QuizPayload} from "./payloads/quiz-payload";
 import {Observable} from "rxjs";
+import { PagingPayload } from './payloads/paging-payload';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class QuizService {
     return this.httpClient.post(this.url + "api/quizzes/", quizPayload);
   }
 
-  getAllQuizzes(): Observable<Array<QuizPayload>> {
-    return this.httpClient.get<Array<QuizPayload>>(this.url + "api/quizzes/all");
+  getAllQuizzes(requestAllQuizzesPayload: PagingPayload): Observable<any> {
+    return this.httpClient.get(this.url + `api/quizzes/all?page=${requestAllQuizzesPayload.page}&size=${requestAllQuizzesPayload.size}`);
   }
 
   getQuiz (permaLink: Number):Observable<QuizPayload> {

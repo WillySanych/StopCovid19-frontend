@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {RegisterPayload} from "../register-payload";
+import {RegisterPayload} from "../../payloads/register-payload";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
-import {LoginPayload} from "../login-payload";
+import {LoginPayload} from "../../payloads/login-payload";
 import {ToastrService} from "ngx-toastr";
 import {MdbTabsComponent} from "mdb-angular-ui-kit/tabs";
 
@@ -102,7 +102,6 @@ export class RegisterComponent implements OnInit {
 
       this.authServive.register(this.registerPayload).subscribe(data => {
         console.log("register success");
-        // this.router.navigateByUrl("/register");
         this.tabsLoginRegister.setActiveTab(0);
         this.toastr.success("Регистрация прошла успешно");
       }, error => {
@@ -113,16 +112,18 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmitLogin() {
-    this.loginPayload.username = this.loginForm.get('usernameLogin')?.value;
-    this.loginPayload.password = this.loginForm.get('passwordLogin')?.value;
+    if (this.loginForm.valid) {
+      this.loginPayload.username = this.loginForm.get('usernameLogin')?.value;
+      this.loginPayload.password = this.loginForm.get('passwordLogin')?.value;
 
-    this.authServive.login(this.loginPayload).subscribe(data => {
-      console.log("login success");
-      this.router.navigateByUrl("/");
-      this.toastr.success("Авторизация прошла успешно");
-    }, error => {
-      console.log("login failed");
-      this.toastr.error("Проверьте имя пользователя и/или пароль", "Ошибка авторизации");
-    });
+      this.authServive.login(this.loginPayload).subscribe(data => {
+        console.log("login success");
+        this.router.navigateByUrl("/");
+        this.toastr.success("Авторизация прошла успешно");
+      }, error => {
+        console.log("login failed");
+        this.toastr.error("Проверьте имя пользователя и/или пароль", "Ошибка авторизации");
+      });
+    }
   }
 }

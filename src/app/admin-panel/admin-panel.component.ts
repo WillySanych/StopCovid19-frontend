@@ -3,6 +3,8 @@ import {User} from "../auth/user";
 import {AdminService} from "./admin.service";
 import {RolesService} from "../service/roles.service";
 import {RolesPayload} from "./roles-payload";
+import {PageEvent} from "@angular/material/paginator";
+import {PagingPayload} from "../payloads/paging-payload";
 
 @Component({
   selector: 'app-admin-panel',
@@ -11,11 +13,11 @@ import {RolesPayload} from "./roles-payload";
 })
 export class AdminPanelComponent implements OnInit {
 
-  rolesPayload: RolesPayload
-  users: Array<User>
-  // adminRole = ["ADMIN"]
-  // doctorRole = ["DOCTOR"]
-  // patientRole = ["PATIENT"]
+  rolesPayload: RolesPayload;
+  users: Array<User>;
+  requestAllUsersPayload: PagingPayload;
+  totalElements: number = 0;
+  pageSizeOptions = [5, 10, 25, 50, 100];
 
   constructor(private adminService: AdminService, public roleService: RolesService) {
     this.rolesPayload = {
@@ -25,7 +27,11 @@ export class AdminPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllUsers();
+    this.requestAllUsersPayload = {
+      page: 0,
+      size: 5
+    }
+    this.getAllUsers(this.requestAllUsersPayload);
     // console.log(this.users);
 
     // this.checkRoles()
@@ -34,10 +40,17 @@ export class AdminPanelComponent implements OnInit {
     //   hasAdminRole: boolean;}) => x.hasAdminRole = this.isSelected(x.roles, ["ADMIN"]))
   }
 
-  getAllUsers() {
-    this.adminService.getUsers()
+  nextPage(event: PageEvent) {
+    this.requestAllUsersPayload.page = event.pageIndex;
+    this.requestAllUsersPayload.size = event.pageSize;
+    this.getAllUsers(this.requestAllUsersPayload);
+  }
+
+  getAllUsers(requestAllUsersPayload: PagingPayload) {
+    this.adminService.getAllUsers(requestAllUsersPayload)
       .subscribe(res => {
-        this.users = res;
+        this.users = res.content;
+        this.totalElements = res.totalElements;
         this.users.forEach(x => x.hasAdminRole = this.isSelected(x.roles, ["ADMIN"]))
         this.users.forEach(x => x.hasDoctorRole = this.isSelected(x.roles, ["DOCTOR"]))
         this.users.forEach(x => x.hasPatientRole = this.isSelected(x.roles, ["PATIENT"]))
@@ -64,9 +77,9 @@ export class AdminPanelComponent implements OnInit {
     this.rolesPayload.roles = Array(this.hasAdminRole(userId), this.hasDoctorRole(userId), this.hasPatientRole(userId), "USER").filter(x => x != null,)
     this.adminService.updateRoles(this.rolesPayload).subscribe(data => {
       console.log("Roles were updated");
-      this.getAllUsers();
+      this.getAllUsers(this.requestAllUsersPayload);
     }, error => {
-      this.getAllUsers();
+      this.getAllUsers(this.requestAllUsersPayload);
       console.log("Failure response");
     });
 

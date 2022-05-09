@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -31,6 +31,11 @@ import {ResultsComponent} from './results/results.component';
 import {QuizResultComponent} from './quiz-result/quiz-result.component';
 import {ToastrModule} from "ngx-toastr";
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {registerLocaleData} from "@angular/common";
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
@@ -66,6 +71,7 @@ import {AdminPanelComponent} from './admin-panel/admin-panel.component';
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatPaginatorModule,
     RouterModule.forRoot([
       {path: "register", component: RegisterComponent},
       {path: "quiz", component: QuizComponent},
@@ -75,7 +81,18 @@ import {AdminPanelComponent} from './admin-panel/admin-panel.component';
     ]),
     HttpClientModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'ru'
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

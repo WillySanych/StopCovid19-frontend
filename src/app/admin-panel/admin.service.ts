@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {User} from "../auth/user";
 import {RolesPayload} from "./roles-payload";
+import {PagingPayload} from "../payloads/paging-payload";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class AdminService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(): Observable<Array<User>> {
-    return this.httpClient.get<Array<User>>(this.url + "users/getAllUsers")
+  getAllUsers(requestAllUsersPayload: PagingPayload): Observable<any> {
+    return this.httpClient.get(this.url + `users/getAllUsers?page=${requestAllUsersPayload.page}&size=${requestAllUsersPayload.size}`)
   }
 
   updateRoles(rolesPayload: RolesPayload) {

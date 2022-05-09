@@ -1,7 +1,7 @@
 export class QuizPayload {
   id: string;
   username: string;
-  createdOn: string;
+  createdOn: number;
   firstQuestion: string;
   secondQuestion: string;
   thirdQuestion: string;
