@@ -1,7 +1,4 @@
 <div class="container mt-5">
-  <!--  <div class="ms-5">-->
-  <!--    <p class="fs-2">{{quiz.username}}</p>-->
-  <!--  </div>-->
   <table class="table table-striped table-hover">
     <thead>
     <tr>
@@ -36,13 +33,3 @@
   </table>
   <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="5" [length]="totalElements" (page)="nextPage($event)"> </mat-paginator>
 </div>
-
-
-<!--[checked]="isSelected(user.roles, ['ADMIN'])"-->
-<!--[checked]='this.roleService.roleMatch(user.roles, ["ADMIN"]).length'-->
-<!--<div *ngFor="let user of users | async">-->
-<!--  <p>{{user.username}}</p>-->
-<!--  <div *ngFor="let userRole of user.roles">-->
-<!--    <p>{{userRole}}</p>-->
-<!--  </div>-->
-<!--</div>-->

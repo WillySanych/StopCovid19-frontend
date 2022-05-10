@@ -9,7 +9,8 @@ import {RolesService} from "../service/roles.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public authService: AuthService, public rolesService: RolesService) { }
+  constructor(public authService: AuthService, public rolesService: RolesService) {
+  }
 
   ngOnInit(): void {
   }

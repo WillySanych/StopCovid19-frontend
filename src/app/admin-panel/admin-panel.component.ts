@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../auth/user";
-import {AdminService} from "./admin.service";
+import {AdminService} from "../service/admin.service";
 import {RolesService} from "../service/roles.service";
 import {RolesPayload} from "./roles-payload";
 import {PageEvent} from "@angular/material/paginator";
@@ -32,12 +32,6 @@ export class AdminPanelComponent implements OnInit {
       size: 5
     }
     this.getAllUsers(this.requestAllUsersPayload);
-    // console.log(this.users);
-
-    // this.checkRoles()
-    // this.users.map((x: {user: any;}) => x.user).map((x: {
-    //   roles: Array<any>;
-    //   hasAdminRole: boolean;}) => x.hasAdminRole = this.isSelected(x.roles, ["ADMIN"]))
   }
 
   nextPage(event: PageEvent) {
@@ -54,7 +48,6 @@ export class AdminPanelComponent implements OnInit {
         this.users.forEach(x => x.hasAdminRole = this.isSelected(x.roles, ["ADMIN"]))
         this.users.forEach(x => x.hasDoctorRole = this.isSelected(x.roles, ["DOCTOR"]))
         this.users.forEach(x => x.hasPatientRole = this.isSelected(x.roles, ["PATIENT"]))
-        // console.log(this.users);
       })
   }
 
@@ -62,15 +55,7 @@ export class AdminPanelComponent implements OnInit {
     return !!this.roleService.roleMatch(roles, role).length;
   }
 
-  // checkRoles() {
-  //   this.users.forEach(x => x.hasAdminRole = this.isSelected(x.roles, ["ADMIN"]))
-  //   this.users.forEach(x => x.hasDoctorRole = this.isSelected(x.roles, ["DOCTOR"]))
-  //   this.users.forEach(x => x.hasPatientRole = this.isSelected(x.roles, ["PATIENT"]))
-  // }
-
   updateRoles(userId: number) {
-    // const username = this.users[userId].username;
-    // console.log(username)
     const roles = Array(this.hasAdminRole(userId), this.hasDoctorRole(userId), this.hasPatientRole(userId), "USER").filter(x => x != null);
     console.log(roles);
     this.rolesPayload.username = this.users[userId].username;

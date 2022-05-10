@@ -1,5 +1,3 @@
-import {User} from "./user";
-
 export class JwtAuthResponse {
   authenticationToken: string;
   refreshToken: string;

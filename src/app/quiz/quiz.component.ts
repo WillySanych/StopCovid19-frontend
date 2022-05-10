@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionService} from "../service/question.service";
 import {QuizPayload} from "../payloads/quiz-payload";
-import {QuizService} from "../quiz.service";
+import {QuizService} from "../service/quiz.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -54,11 +54,8 @@ export class QuizComponent implements OnInit {
   }
 
   collectingData() {
-    // console.log(this.questionList[this.currentQuestion]?.options)
     this.answerList[this.currentQuestion] = this.questionList[this.currentQuestion]?.options.filter(
       (x: { isSelected: boolean; }) => x.isSelected).map((x: { text: any; }) => x.text).join(", ").toString();
-    // console.log(this.answerList[this.currentQuestion])
-    // console.log(this.answerList)
   }
 
   nextQuestion() {

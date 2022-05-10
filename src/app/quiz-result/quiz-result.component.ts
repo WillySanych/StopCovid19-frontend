@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {QuizService} from "../quiz.service";
+import {QuizService} from "../service/quiz.service";
 import {QuizPayload} from "../payloads/quiz-payload";
 
 @Component({
@@ -13,16 +13,17 @@ export class QuizResultComponent implements OnInit {
   quiz: QuizPayload
   permaLink: Number
 
-  constructor(private router: ActivatedRoute, private quizService: QuizService) { }
+  constructor(private router: ActivatedRoute, private quizService: QuizService) {
+  }
 
   ngOnInit(): void {
-    this.router.params.subscribe( params => {
+    this.router.params.subscribe(params => {
       this.permaLink = params["id"]
     })
-    this.quizService.getQuiz(this.permaLink).subscribe( (data: QuizPayload) => {
-      this.quiz = data
-    }, (err: any) => {
-      console.log("FailureResponse")
+    this.quizService.getQuiz(this.permaLink).subscribe((data: QuizPayload) => {
+        this.quiz = data
+      }, (err: any) => {
+        console.log("FailureResponse")
       }
     )
   }

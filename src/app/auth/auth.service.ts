@@ -5,23 +5,24 @@ import {map, Observable, tap, throwError} from "rxjs";
 import {LoginPayload} from "../payloads/login-payload";
 import {JwtAuthResponse} from "./jwt-auth-response";
 import {LocalStorageService} from "ngx-webstorage";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private url = "http://localhost:8080/api/auth/";
+  private url = environment.baseUrl;
 
   constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService) {
   }
 
   register(registerPayload: RegisterPayload): Observable<any> {
-    return this.httpClient.post(this.url + "signup", registerPayload);
+    return this.httpClient.post(this.url + "api/auth/signup", registerPayload);
   }
 
   login(loginPayload: LoginPayload): Observable<boolean> {
-    return this.httpClient.post<JwtAuthResponse>(this.url + "login", loginPayload)
+    return this.httpClient.post<JwtAuthResponse>(this.url + "api/auth/login", loginPayload)
       .pipe(map(data => {
           this.setAuthenticationToken(data.authenticationToken);
           this.setUsername(data.username);
@@ -34,7 +35,7 @@ export class AuthService {
   }
 
   logout() {
-    this.httpClient.post(this.url + "logout", this.refreshToken()).subscribe(data => {
+    this.httpClient.post(this.url + "api/auth/logout", this.refreshToken()).subscribe(data => {
       console.log(data);
     }, error => {
       throwError(error);
@@ -51,7 +52,7 @@ export class AuthService {
       refreshToken: this.getRefreshToken(),
       username: this.getUsername()
     }
-    return this.httpClient.post<JwtAuthResponse>(this.url + "refresh/token",
+    return this.httpClient.post<JwtAuthResponse>(this.url + "api/auth/refresh/token",
       refreshTokenPayload)
       .pipe(tap(response => {
         this.localStorageService.store("authenticationToken", response.authenticationToken);
@@ -93,10 +94,6 @@ export class AuthService {
 
   getUsername() {
     return this.localStorageService.retrieve("username");
-  }
-
-  getExpirationTime() {
-    return this.localStorageService.retrieve("expiresAt");
   }
 
   isAuthenticated(): boolean {

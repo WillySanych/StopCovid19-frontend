@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {QuizService} from "../quiz.service";
+import {QuizService} from "../service/quiz.service";
 import {QuizPayload} from "../payloads/quiz-payload";
 import {PageEvent} from "@angular/material/paginator";
 import {PagingPayload} from "../payloads/paging-payload";
@@ -16,7 +16,7 @@ export class ResultsComponent implements OnInit {
   totalElements: number = 0;
   pageSizeOptions = [5, 10, 25, 50, 100];
 
-  constructor (private quizService: QuizService ) {
+  constructor(private quizService: QuizService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +24,6 @@ export class ResultsComponent implements OnInit {
       page: 0,
       size: 5
     }
-    // this.quizzes = this.quizService.getAllQuizzes()
     this.getAllQuizzes(this.requestAllQuizzesPayload)
   }
 
@@ -35,7 +34,7 @@ export class ResultsComponent implements OnInit {
   }
 
   getAllQuizzes(requestAllQuizzesPayload: PagingPayload) {
-    this.quizService.getAllQuizzes(requestAllQuizzesPayload).subscribe( res => {
+    this.quizService.getAllQuizzes(requestAllQuizzesPayload).subscribe(res => {
       this.quizzes = res.content;
       this.totalElements = res.totalElements;
     }, error => {

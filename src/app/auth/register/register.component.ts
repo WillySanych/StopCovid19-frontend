@@ -23,13 +23,11 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private authServive: AuthService, private router: Router, private toastr: ToastrService) {
     this.registerForm = this.formBuilder.group({
       usernameRegister: '',
-      // emailRegister: '',
       passwordRegister: '',
       confirmPasswordRegister: ''
     });
     this.registerPayload = {
       username: '',
-      // email: '',
       password: '',
       confirmPassword: ''
     };
@@ -48,10 +46,6 @@ export class RegisterComponent implements OnInit {
   get usernameRegister(): AbstractControl {
     return this.registerForm.get('usernameRegister')!;
   }
-
-  // get emailRegister(): AbstractControl {
-  //   return this.registerForm.get('emailRegister')!;
-  // }
 
   get passwordRegister(): AbstractControl {
     return this.registerForm.get('passwordRegister')!;
@@ -78,7 +72,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       usernameRegister: new FormControl(null, {validators: Validators.required, updateOn: "submit"}),
-      // emailRegister: new FormControl(null, {validators: [Validators.required, Validators.email], updateOn: "submit"}),
       passwordRegister: new FormControl(null, {validators: Validators.required, updateOn: "submit"}),
       confirmPasswordRegister: new FormControl(null, {
         validators: [Validators.required, this.matchingPasswords.bind(this)],
@@ -96,7 +89,6 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.registerForm.markAllAsTouched();
       this.registerPayload.username = this.registerForm.get('usernameRegister')?.value;
-      // this.registerPayload.email = this.registerForm.get('emailRegister')?.value;
       this.registerPayload.password = this.registerForm.get('passwordRegister')?.value;
       this.registerPayload.confirmPassword = this.registerForm.get('confirmPasswordRegister')?.value;
 

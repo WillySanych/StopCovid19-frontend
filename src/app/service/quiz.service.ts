@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {QuizPayload} from "./payloads/quiz-payload";
+import {QuizPayload} from "../payloads/quiz-payload";
 import {Observable} from "rxjs";
-import { PagingPayload } from './payloads/paging-payload';
+import {PagingPayload} from '../payloads/paging-payload';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
 
-  private url = 'http://localhost:8080/';
+  private url = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -22,7 +23,7 @@ export class QuizService {
     return this.httpClient.get(this.url + `api/quizzes/all?page=${requestAllQuizzesPayload.page}&size=${requestAllQuizzesPayload.size}`);
   }
 
-  getQuiz (permaLink: Number):Observable<QuizPayload> {
-     return this.httpClient.get<QuizPayload>(this.url + "api/quizzes/get/" + permaLink);
+  getQuiz(permaLink: Number): Observable<QuizPayload> {
+    return this.httpClient.get<QuizPayload>(this.url + "api/quizzes/get/" + permaLink);
   }
 }
