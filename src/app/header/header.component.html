@@ -47,12 +47,12 @@
         <button *ngIf="!authService.isAuthenticated()" mdbRipple rippleColor="light" type="button"
                 class="btn btn-primary btn-rounded me-3 ripple-surface-unbound"
                 routerLink="/register">
-          Login
+          Войти
         </button>
         <button *ngIf="authService.isAuthenticated()" mdbRipple rippleColor="light" type="button"
                 class="btn btn-primary btn-rounded me-3 ripple-surface-unbound"
                 (click)="authService.logout()">
-          Logout
+          Выйти
         </button>
       </div>
     </div>
