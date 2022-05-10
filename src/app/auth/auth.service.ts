@@ -6,6 +6,7 @@ import {LoginPayload} from "../payloads/login-payload";
 import {JwtAuthResponse} from "./jwt-auth-response";
 import {LocalStorageService} from "ngx-webstorage";
 import {environment} from "../../environments/environment";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
 
   private url = environment.baseUrl;
 
-  constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService) {
+  constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService, private router: Router) {
   }
 
   register(registerPayload: RegisterPayload): Observable<any> {
@@ -45,6 +46,7 @@ export class AuthService {
     this.localStorageService.clear("username");
     this.localStorageService.clear("expiresAt");
     this.localStorageService.clear("roles");
+    this.router.navigateByUrl("/");
   }
 
   refreshToken() {
