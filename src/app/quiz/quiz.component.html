@@ -1,0 +1,90 @@
+<div class="container mt-5 w-50">
+  <div class="card border border-primary">
+    <div class="card-header mx-auto">Вопрос: {{currentQuestion + 1}} из {{questionList.length}}</div>
+    <div class="card-body">
+      <div class="mb-4">
+        <h5 class="card-title mb-3">{{questionList[currentQuestion]?.questionText}}</h5>
+        <div *ngIf="numbersOfCheckboxQuestions.includes(currentQuestion + 1)">
+          <p class="card-text" *ngFor="let option of questionList[currentQuestion]?.options">
+            <input
+              mdbCheckbox
+              class="form-check-input"
+              type="checkbox"
+              name="{{option.text}}"
+              [(ngModel)]="option.isSelected"
+              (checkboxChange)="collectingData()"
+              id="CheckBox{{option.text}}"
+            />
+            <label class="form-check-label" for="CheckBox{{option.text}}">
+              {{option.text}}
+            </label>
+          </p>
+          <div class="d-flex justify-content-between">
+            <button [disabled]="currentQuestion===0" class="btn btn-primary"
+                    (click)="previousQuestion()">
+              Предыдущий
+              вопрос
+            </button>
+            <button *ngIf="!(currentQuestion===questionList.length - 1)"
+                    [disabled]="currentQuestion===questionList.length - 1 || this.answerList[this.currentQuestion] == null || this.answerList[this.currentQuestion] === ''"
+                    class="btn btn-primary"
+                    (click)="nextQuestion()">
+              Следующий вопрос
+            </button>
+          </div>
+        </div>
+        <div *ngIf="numbersOfRadiobuttonQuestions.includes(currentQuestion + 1)">
+          <p class="card-text" *ngFor="let option of questionList[currentQuestion]?.options">
+            <input
+              mdbRadio
+              [(ngModel)]="answerList[currentQuestion]"
+              class="form-check-input"
+              type="radio"
+              name="{{questionList[currentQuestion]?.questionText}}"
+              value="{{option.text}}"
+              id="RadioButton{{option.text}}"
+            >
+            <label class="form-check-label" for="RadioButton{{option.text}}"> {{option.text}} </label>
+          </p>
+          <div class="d-flex justify-content-between">
+            <button [disabled]="currentQuestion===0" class="btn btn-primary"
+                    (click)="previousQuestion()">
+              Предыдущий
+              вопрос
+            </button>
+            <button [disabled]="currentQuestion===questionList.length - 1 || answerList[currentQuestion] == null"
+                    class="btn btn-primary"
+                    (click)="nextQuestion()">
+              Следующий вопрос
+            </button>
+          </div>
+        </div>
+        <div class="mt-3" *ngIf="numbersOfInputFieldQuestions.includes(currentQuestion + 1)">
+          <mdb-form-control>
+            <textarea [(ngModel)]="answerList[currentQuestion]" mdbInput class="form-control" id="textAreaExample"
+                      rows="4"></textarea>
+          </mdb-form-control>
+          <div class="d-flex justify-content-between mt-3">
+            <button [disabled]="currentQuestion===0" class="btn btn-primary"
+                    (click)="previousQuestion()">
+              Предыдущий
+              вопрос
+            </button>
+            <button [disabled]="currentQuestion===questionList.length - 1 || answerList[currentQuestion] == null"
+                    class="btn btn-primary"
+                    (click)="nextQuestion()">
+              Следующий вопрос
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="currentQuestion===questionList.length - 1" class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary" (click)="addQuiz()">
+          Закончить
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

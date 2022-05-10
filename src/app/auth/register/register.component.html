@@ -1,0 +1,113 @@
+<div class="nav nav-pills nav-justified mt-5 w-auto">
+  <mdb-tabs [pills]="true" class="mx-auto w-25" #tabsLoginRegister>
+    <!--Login-->
+
+    <mdb-tab title="Войти">
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+
+        <!-- Login input -->
+        <div class="form-outline mb-5">
+          <mdb-form-control>
+            <input mdbValidate mdbInput type="text" id="inputUsernameLogin" [formControlName]="'usernameLogin'"
+                   class="form-control" required/>
+            <label mdbLabel class="form-label" for="inputUsernameLogin">Имя пользователя</label>
+            <mdb-error
+              *ngIf="usernameLogin?.invalid && (usernameLogin?.dirty || usernameLogin.touched)">
+              Введите имя пользователя
+            </mdb-error>
+            <mdb-success
+              *ngIf="usernameLogin?.valid && (usernameLogin?.dirty || usernameLogin?.touched)">
+            </mdb-success>
+          </mdb-form-control>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-5">
+          <mdb-form-control>
+            <input mdbValidate mdbInput type="password" id="inputPasswordLogin" [formControlName]="'passwordLogin'"
+                   class="form-control"
+                   required/>
+            <label mdbLabel class="form-label" for="inputPasswordLogin">Пароль</label>
+            <mdb-error
+              *ngIf="passwordLogin?.invalid && (passwordLogin?.dirty || passwordLogin.touched)">
+              Введите пароль
+            </mdb-error>
+            <mdb-success
+              *ngIf="passwordLogin?.valid && (passwordLogin?.dirty || passwordLogin?.touched)">
+            </mdb-success>
+          </mdb-form-control>
+        </div>
+
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Войти</button>
+
+      </form>
+    </mdb-tab>
+
+    <!--Register-->
+    <mdb-tab title="Зарегистрироваться">
+
+      <ng-template mdbTabContent>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegistration()">
+
+          <!-- Login input -->
+          <div class="form-outline mb-5">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="text" id="inputUsernameRegistration"
+                     [formControlName]="'usernameRegister'" class="form-control" required/>
+              <label mdbLabel class="form-label" for="inputUsernameRegistration">Имя пользователя</label>
+              <mdb-error
+                *ngIf="usernameRegister?.invalid && (usernameRegister?.dirty || usernameRegister.touched)">
+                Введите имя пользователя
+              </mdb-error>
+              <mdb-success
+                *ngIf="usernameRegister?.valid && (usernameRegister?.dirty || usernameRegister?.touched)">
+              </mdb-success>
+            </mdb-form-control>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-5">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="password" id="inputPasswordRegistration"
+                     [formControlName]="'passwordRegister'" class="form-control" required/>
+              <label mdbLabel class="form-label" for="inputPasswordRegistration">Пароль</label>
+              <mdb-error
+                *ngIf="passwordRegister?.invalid && (passwordRegister?.dirty || passwordRegister.touched)">
+                Введите пароль
+              </mdb-error>
+              <mdb-success
+                *ngIf="passwordRegister?.valid && (passwordRegister?.dirty || passwordRegister?.touched)">
+              </mdb-success>
+            </mdb-form-control>
+          </div>
+
+          <!-- Confirm password input -->
+          <div class="form-outline mb-5">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="password" id="inputConfirmPasswordRegistration"
+                     [formControlName]="'confirmPasswordRegister'" class="form-control" required/>
+              <label mdbLabel class="form-label" for="inputConfirmPasswordRegistration">Подтверждение пароля</label>
+              <mdb-error
+                *ngIf="confirmPasswordRegister?.invalid && (confirmPasswordRegister?.dirty || confirmPasswordRegister.touched)">
+                Введите пароль еще раз
+              </mdb-error>
+              <mdb-success
+                *ngIf="confirmPasswordRegister?.valid && (confirmPasswordRegister?.dirty || confirmPasswordRegister?.touched)">
+              </mdb-success>
+            </mdb-form-control>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-4">Зарегистрироваться</button>
+
+        </form>
+
+      </ng-template>
+
+    </mdb-tab>
+  </mdb-tabs>
+</div>

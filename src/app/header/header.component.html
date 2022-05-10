@@ -1,0 +1,63 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-5" href="/">
+      <img
+        src="assets/covid.png"
+        height="55"
+        style="margin-top: -1px;"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="buttonsNav.toggle()"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse"
+      id="navbarButtonsExample"
+      mdbCollapse
+      #buttonsNav="mdbCollapse"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li *ngIf="rolesService.hasPatientRole()" class="nav-item">
+          <a class="navbar-brand" href="/quiz">Опрос</a>
+        </li>
+        <li *ngIf="rolesService.hasDoctorRole()" class="nav-item">
+          <a class="navbar-brand" href="/results">Результаты</a>
+        </li>
+        <li *ngIf="rolesService.hasAdminRole()" class="nav-item">
+          <a class="navbar-brand" href="/admin-panel">Управление пользователями</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center">
+        <button *ngIf="!authService.isAuthenticated()" mdbRipple rippleColor="light" type="button"
+                class="btn btn-primary btn-rounded me-3 ripple-surface-unbound"
+                routerLink="/register">
+          Login
+        </button>
+        <button *ngIf="authService.isAuthenticated()" mdbRipple rippleColor="light" type="button"
+                class="btn btn-primary btn-rounded me-3 ripple-surface-unbound"
+                (click)="authService.logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->

@@ -1,0 +1,30 @@
+<div class="table-responsive container mt-5">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Имя пользователя</th>
+      <th scope="col">Время</th>
+      <th scope="col">Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let quiz of quizzes">
+      <th scope="row">{{quiz.id}}</th>
+      <td>{{quiz.username}}</td>
+      <td>{{quiz.createdOn * 1000 | date: 'd MMM y, h:mm:ss'}}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-rounded btn-sm btn-outline-dark"
+          mdbRipple rippleColor="dark"
+          routerLink="/result/{{quiz.id}}">
+          Подробнее
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="5" [length]="totalElements"
+                 (page)="nextPage($event)"></mat-paginator>
+</div>
