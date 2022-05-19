@@ -17,7 +17,7 @@
                  id="{{user.id}}ADMIN"
                  [(ngModel)]="user.hasAdminRole"
                  (checkboxChange)="updateRoles(user.id)"
-                 [disabled]="user.hasAdminRole"
+                 [disabled]="true"
       /></td>
       <td><input mdbCheckbox class="form-check-input" type="checkbox" name="DOCTOR"
                  id="{{user.id}}DOCTOR"
