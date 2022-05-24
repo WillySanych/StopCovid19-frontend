@@ -3,9 +3,9 @@
     <div class="card-header mx-auto">Вопрос: {{currentQuestion + 1}} из {{questionList.length}}</div>
     <div class="card-body">
       <div class="mb-4">
-        <h5 class="card-title mb-3">{{questionList[currentQuestion]?.questionText}}</h5>
-        <div *ngIf="numbersOfCheckboxQuestions.includes(currentQuestion + 1)">
-          <p class="card-text" *ngFor="let option of questionList[currentQuestion]?.options">
+        <h5 class="card-title mb-3">{{questionList[currentQuestion].questionText}}</h5>
+        <div *ngIf="questionList[currentQuestion].typeOfQuestion == checkbox">
+          <p class="card-text" *ngFor="let option of questionList[currentQuestion].questionAnswers">
             <input
               mdbCheckbox
               class="form-check-input"
@@ -33,14 +33,14 @@
             </button>
           </div>
         </div>
-        <div *ngIf="numbersOfRadiobuttonQuestions.includes(currentQuestion + 1)">
-          <p class="card-text" *ngFor="let option of questionList[currentQuestion]?.options">
+        <div *ngIf="questionList[currentQuestion].typeOfQuestion == radiobutton">
+          <p class="card-text" *ngFor="let option of questionList[currentQuestion].questionAnswers">
             <input
               mdbRadio
               [(ngModel)]="answerList[currentQuestion]"
               class="form-check-input"
               type="radio"
-              name="{{questionList[currentQuestion]?.questionText}}"
+              name="{{questionList[currentQuestion].questionText}}"
               value="{{option.text}}"
               id="RadioButton{{option.text}}"
             >
@@ -59,7 +59,7 @@
             </button>
           </div>
         </div>
-        <div class="mt-3" *ngIf="numbersOfInputFieldQuestions.includes(currentQuestion + 1)">
+        <div class="mt-3" *ngIf="questionList[currentQuestion].typeOfQuestion == text">
           <mdb-form-control>
             <textarea [(ngModel)]="answerList[currentQuestion]" mdbInput class="form-control" id="textAreaExample"
                       rows="4"></textarea>
@@ -81,7 +81,7 @@
 
       <div *ngIf="currentQuestion===questionList.length - 1" class="d-flex justify-content-center mt-3">
         <button class="btn btn-primary" (click)="addQuiz()">
-          Закончить
+          Закончитьr
         </button>
       </div>
     </div>

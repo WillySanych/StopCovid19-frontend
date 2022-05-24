@@ -1,15 +1,19 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
 
-  constructor(private http: HttpClient) {
+  private url = environment.baseUrl;
+
+  constructor(private httpClient: HttpClient) {
   }
 
-  getQuestionJson() {
-    return this.http.get<any>("assets/questions.json")
+  getQuestionJson(): Observable<any> {
+    return this.httpClient.get<any>(this.url + "questions/all");
   }
 }

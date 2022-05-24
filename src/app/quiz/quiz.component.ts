@@ -3,6 +3,7 @@ import {QuestionService} from "../service/question.service";
 import {QuizPayload} from "../payloads/quiz-payload";
 import {QuizService} from "../service/quiz.service";
 import {Router} from "@angular/router";
+import {QuestionPayload} from "../payloads/question-payload";
 
 @Component({
   selector: 'app-quiz',
@@ -12,12 +13,12 @@ import {Router} from "@angular/router";
 export class QuizComponent implements OnInit {
 
   quizPayload: QuizPayload
-  questionList: any = []
+  questionList: QuestionPayload[] = []
   currentQuestion: number = 0
   answerList: string[] = []
-  numbersOfCheckboxQuestions: number[] = [3, 11, 12, 14]
-  numbersOfRadiobuttonQuestions: number[] = [1, 2, 4, 5, 6, 7, 8, 9, 10, 13]
-  numbersOfInputFieldQuestions: number[] = [15]
+  radiobutton = "radiobutton"
+  checkbox = "checkbox"
+  text = "text"
 
   constructor(private questionService: QuestionService, private addQuizService: QuizService, private router: Router) {
     this.quizPayload = {
@@ -49,13 +50,38 @@ export class QuizComponent implements OnInit {
   getAllQuestions() {
     this.questionService.getQuestionJson()
       .subscribe(res => {
-        this.questionList = res.questions;
-      })
+          for (let i = 0; i < res.length; i++) {
+            this.questionList[i] = {
+              id: res[i].id,
+              questionText: res[i].questionText,
+              questionAnswers: [],
+              typeOfQuestion: res[i].typeOfQuestion
+            }
+            for(let j = 0; j < res[i].questionAnswers.length; j++){
+              this.questionList[i].questionAnswers[j] = {
+                text: res[i].questionAnswers[j],
+                isSelected: false,
+              }
+            }
+          }
+          // for (let i = 0; i < res.length; i++) {
+          //   this.questionList[i].id = res[i].id;
+          //   this.questionList[i].questionText = res[i].questionText;
+          //   for (let j = 0; j < res[j].questionAnswers.length; j++) {
+          //     this.questionList[i].questionAnswers[j].text = res[i].questionAnswers[j];
+          //   }
+          //   this.questionList[i].typeOfQuestion = res[i].typeOfQuestion;
+          // }
+          console.log(res)
+          console.log(this.questionList)
+        }
+      )
   }
 
   collectingData() {
-    this.answerList[this.currentQuestion] = this.questionList[this.currentQuestion]?.options.filter(
+    this.answerList[this.currentQuestion] = this.questionList[this.currentQuestion]?.questionAnswers.filter(
       (x: { isSelected: boolean; }) => x.isSelected).map((x: { text: any; }) => x.text).join(", ").toString();
+    console.log(this.answerList.toString())
   }
 
   nextQuestion() {
