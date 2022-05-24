@@ -1,4 +1,10 @@
-# FrontendAngular
+# StopCovid19-frontend #
+
+This is a frontend part of app.
+
+Backend: https://github.com/WillySanych/StopCovid19-backend
+
+## FrontendAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
 
