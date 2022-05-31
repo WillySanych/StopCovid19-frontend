@@ -16,4 +16,8 @@ export class QuestionService {
   getQuestionJson(): Observable<any> {
     return this.httpClient.get<any>(this.url + "questions/all");
   }
+
+  getQuestionsText(): Observable<string[]> {
+    return this.httpClient.get<string[]>(this.url + "questions/all-texts");
+  }
 }

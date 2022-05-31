@@ -25,21 +25,7 @@ export class QuizComponent implements OnInit {
       id: "",
       username: "",
       createdOn: 0,
-      firstQuestion: "",
-      secondQuestion: "",
-      thirdQuestion: "",
-      fourthQuestion: "",
-      fifthQuestion: "",
-      sixthQuestion: "",
-      seventhQuestion: "",
-      eighthQuestion: "",
-      ninthQuestion: "",
-      tenthQuestion: "",
-      eleventhQuestion: "",
-      twelfthQuestion: "",
-      thirteenthQuestion: "",
-      fourteenthQuestion: "",
-      fifteenthQuestion: ""
+      answers: []
     }
   }
 
@@ -64,14 +50,6 @@ export class QuizComponent implements OnInit {
               }
             }
           }
-          // for (let i = 0; i < res.length; i++) {
-          //   this.questionList[i].id = res[i].id;
-          //   this.questionList[i].questionText = res[i].questionText;
-          //   for (let j = 0; j < res[j].questionAnswers.length; j++) {
-          //     this.questionList[i].questionAnswers[j].text = res[i].questionAnswers[j];
-          //   }
-          //   this.questionList[i].typeOfQuestion = res[i].typeOfQuestion;
-          // }
           console.log(res)
           console.log(this.questionList)
         }
@@ -105,21 +83,7 @@ export class QuizComponent implements OnInit {
   }
 
   addQuiz() {
-    this.quizPayload.firstQuestion = this.answerList[0];
-    this.quizPayload.secondQuestion = this.answerList[1];
-    this.quizPayload.thirdQuestion = this.answerList[2];
-    this.quizPayload.fourthQuestion = this.answerList[3];
-    this.quizPayload.fifthQuestion = this.answerList[4];
-    this.quizPayload.sixthQuestion = this.answerList[5];
-    this.quizPayload.seventhQuestion = this.answerList[6];
-    this.quizPayload.eighthQuestion = this.answerList[7];
-    this.quizPayload.ninthQuestion = this.answerList[8];
-    this.quizPayload.tenthQuestion = this.answerList[9];
-    this.quizPayload.eleventhQuestion = this.answerList[10];
-    this.quizPayload.twelfthQuestion = this.answerList[11];
-    this.quizPayload.thirteenthQuestion = this.answerList[12];
-    this.quizPayload.fourteenthQuestion = this.answerList[13];
-    this.quizPayload.fifteenthQuestion = this.answerList[14];
+    this.quizPayload.answers = this.answerList;
 
     this.addQuizService.addQuiz(this.quizPayload).subscribe(data => {
       this.router.navigateByUrl("/");
